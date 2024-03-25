@@ -4,8 +4,12 @@ namespace App\Service;
 
 use App\Entity\MusicBand;
 use App\Repository\MusicBandRepository;
+use Shuchkin\SimpleXLSX;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -13,6 +17,7 @@ class MusicBandService
 {
     protected $musicBandRepository;
     protected $validator;
+    protected $uploaderHelper;
 
     public function __construct(MusicBandRepository $musicBandRepository, ValidatorInterface $validator)
     {
@@ -89,5 +94,50 @@ class MusicBandService
     public function deleteMusicBrand($id): void
     {
         $this->musicBandRepository->remove($this->getMusicBandById($id));
+    }
+
+    public function uploadMusicBrand(?UploadedFile $file): void
+    {
+        $file_errors = $this->validator->validate(
+            $file,
+            [
+                new NotBlank([
+                    'message' => 'Please select a file to upload',
+                ]),
+                new File([
+                    'maxSize' => '5M',
+                    'mimeTypes' => [
+                        'application/vnd.ms-excel',
+                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                    ],
+                ]),
+            ]
+        );
+
+        if (count($file_errors)) {
+            throw new ValidationFailedException("Le fichier n'est pas valide", $file_errors);
+        }
+
+        if ($rows = SimpleXLSX::parse($file)->rows()) {
+            // Start at 1 to avoid table header
+            for ($i = 1; $i < count($rows); ++$i) {
+                $row = $rows[$i];
+
+                $musicBand = new MusicBand();
+                $musicBand->setName($row[0]);
+                $musicBand->setOrigin($row[1]);
+                $musicBand->setCity($row[2]);
+                $musicBand->setFoundationYear((int) $row[3]);
+                $musicBand->setSeparationYear((int) $row[4]);
+                $musicBand->setFounders($row[5]);
+                $musicBand->setTotalMembers((int) $row[6]);
+                $musicBand->setStyle($row[7]);
+                $musicBand->setDescription($row[8]);
+
+                $this->createMusicBand($musicBand);
+            }
+        } else {
+            throw new BadRequestException(SimpleXLSX::parseError());
+        }
     }
 }
