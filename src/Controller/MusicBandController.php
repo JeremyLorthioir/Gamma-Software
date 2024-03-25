@@ -14,13 +14,13 @@ use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 class MusicBandController extends AbstractController
 {
-    #[Route('/music/band', name: 'app_music_band', methods: ['GET'])]
+    #[Route('/music_bands', name: 'app_music_band', methods: ['GET'])]
     public function index(MusicBandService $musicBandService): JsonResponse
     {
         return $this->json($musicBandService->getMusicBands());
     }
 
-    #[Route('/music/band/{id}', name: 'app_music_band_show', methods: ['GET'])]
+    #[Route('/music_bands/{id}', name: 'app_music_band_show', methods: ['GET'])]
     public function show(MusicBandService $musicBandService, int $id): JsonResponse
     {
         try {
@@ -32,7 +32,7 @@ class MusicBandController extends AbstractController
         return $this->json($musicBand);
     }
 
-    #[Route('/music/band', name: 'app_music_band_create', methods: ['POST'])]
+    #[Route('/music_bands', name: 'app_music_band_create', methods: ['POST'])]
     public function create(
         #[MapRequestPayload(
             acceptFormat: 'json',
@@ -52,7 +52,7 @@ class MusicBandController extends AbstractController
         return $this->json($musicBand, Response::HTTP_CREATED);
     }
 
-    #[Route('/music/band/{id}', name: 'app_music_band_update', methods: ['PUT', 'PATCH'])]
+    #[Route('/music_bands/{id}', name: 'app_music_band_update', methods: ['PUT', 'PATCH'])]
     public function update(
         #[MapRequestPayload(
             acceptFormat: 'json',
@@ -73,7 +73,7 @@ class MusicBandController extends AbstractController
         return $this->json($musicBand);
     }
 
-    #[Route('/music/band/{id}', name: 'app_music_band_delete', methods: ['DELETE'])]
+    #[Route('/music_bands/{id}', name: 'app_music_band_delete', methods: ['DELETE'])]
     public function delete(MusicBandService $musicBandService, int $id): JsonResponse
     {
         try {
@@ -85,7 +85,7 @@ class MusicBandController extends AbstractController
         return $this->json('La groupe a bien été supprimé');
     }
 
-    #[Route('/music/band/upload', name: 'app_music_band_delete', methods: ['POST'])]
+    #[Route('/music_bands/upload', name: 'app_music_band_upload', methods: ['POST'])]
     public function upload(Request $request, MusicBandService $musicBandService): JsonResponse
     {
         try {

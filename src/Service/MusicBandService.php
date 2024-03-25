@@ -17,7 +17,6 @@ class MusicBandService
 {
     protected $musicBandRepository;
     protected $validator;
-    protected $uploaderHelper;
 
     public function __construct(MusicBandRepository $musicBandRepository, ValidatorInterface $validator)
     {
