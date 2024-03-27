@@ -1,5 +1,23 @@
 <div class="wrapper default-theme">
   <main>
+    <aside class="sidebar shadow-sm">
+      <nav class="sidebar-menu pt-3 pb-3">
+        <div class="menu-header mt-3 mb-2">
+          Général
+        </div>
+        <ul class="menu-items">
+          <li class="header-menu"><a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"><span>Liste
+                des groupes</span></a>
+          </li>
+          <li class="header-menu"><a routerLink="/music-bands-create" routerLinkActive="active"
+              ariaCurrentWhenActive="page"><span>Créer des groupes</span></a>
+          </li>
+          <li class="header-menu"><a routerLink="/music-bands-upload" routerLinkActive="active"
+              ariaCurrentWhenActive="page"><span>Importer des groupes</span></a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
     <div class="pages container-fluid pt-4 pb-4 pl-4 pr-4">
       <router-outlet />
     </div>

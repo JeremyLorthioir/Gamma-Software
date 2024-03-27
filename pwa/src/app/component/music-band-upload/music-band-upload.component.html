@@ -1,0 +1,18 @@
+<div class="form-group">
+    <label for="file">Fichier d'import</label>
+    <input type="file" class="form-control" (change)="onChange($event)" #fileUpload />
+    <small id="fileHelp" class="form-text text-muted">le format attendu est un fichier Excel</small>
+</div>
+
+<div *ngIf="file">
+    <section class="file-info">
+        File details:
+        <ul>
+            <li>Name: {{file.name}}</li>
+            <li>Type: {{file.type}}</li>
+            <li>Size: {{file.size}} bytes</li>
+        </ul>
+    </section>
+
+    <button (click)="onUpload()" class="btn btn-primary">Upload the file</button>
+</div>

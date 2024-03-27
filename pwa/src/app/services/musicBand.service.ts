@@ -14,4 +14,19 @@ export class MusicBandService {
     getMusicBands(): Observable<MusicBand[]> {
         return this.http.get<MusicBand[]>(`${this.apiUrl}/music_bands`);
     }
+
+    uploadMusicBands(file: File): void {
+        const formData = new FormData();
+        formData.append('import', file, file.name);
+
+        const upload = this.http.post(`${this.apiUrl}/music_bands/upload`, formData);
+        upload.subscribe({
+            next: () => {
+                alert("Les groupes ont été importés.");
+            },
+            error: () => {
+                alert("Impossible d'importer les groupes.");
+            }
+        });
+    }
 }

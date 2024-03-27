@@ -107,7 +107,7 @@ class MusicBandService
                     'maxSize' => '5M',
                     'mimeTypes' => [
                         'application/vnd.ms-excel',
-                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                     ],
                 ]),
             ]
