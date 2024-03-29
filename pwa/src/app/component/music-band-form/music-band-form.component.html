@@ -1,58 +1,68 @@
 <form [formGroup]="musicBandForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
     <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" id="name" class="form-control" formControlName="name">
-      <div *ngIf="musicBandForm.get('name')?.errors?.['required'] && musicBandForm.get('name')?.touched" class="invalid-feedback">
-        Name is required.
-      </div>
+        <label for="name">Nom :</label>
+        <input type="text" id="name" class="form-control" formControlName="name">
+        <div *ngIf="musicBandForm.get('name')?.errors?.['required'] && musicBandForm.get('name')?.touched"
+            class="invalid-feedback">
+            Le nom est requis.
+        </div>
     </div>
     <div class="form-group">
-      <label for="origin">Origin:</label>
-      <input type="text" id="origin" class="form-control" formControlName="origin">
-      <div *ngIf="musicBandForm.get('origin')?.errors?.['required'] && musicBandForm.get('origin')?.touched" class="invalid-feedback">
-        Origin is required.
-      </div>
+        <label for="origin">Origine :</label>
+        <input type="text" id="origin" class="form-control" formControlName="origin">
+        <div *ngIf="musicBandForm.get('origin')?.errors?.['required'] && musicBandForm.get('origin')?.touched"
+            class="invalid-feedback">
+            L'origine est requise.
+        </div>
     </div>
     <div class="form-group">
-      <label for="city">City:</label>
-      <input type="text" id="city" class="form-control" formControlName="city">
-      <div *ngIf="musicBandForm.get('city')?.errors?.['required'] && musicBandForm.get('city')?.touched" class="invalid-feedback">
-        City is required.
-      </div>
+        <label for="city">Ville :</label>
+        <input type="text" id="city" class="form-control" formControlName="city">
+        <div *ngIf="musicBandForm.get('city')?.errors?.['required'] && musicBandForm.get('city')?.touched"
+            class="invalid-feedback">
+            La ville est requise.
+        </div>
     </div>
     <div class="form-group">
-      <label for="foundationYear">Foundation Year:</label>
-      <input type="number" id="foundationYear" class="form-control" formControlName="foundationYear">
-      <div *ngIf="musicBandForm.get('foundationYear')?.errors?.['required'] && musicBandForm.get('foundationYear')?.touched" class="invalid-feedback">
-        Foundation Year is required.
-      </div>
+        <label for="foundationYear">Année de début :</label>
+        <input type="number" id="foundationYear" class="form-control" formControlName="foundationYear">
+        <div *ngIf="musicBandForm.get('foundationYear')?.errors?.['required'] && musicBandForm.get('foundationYear')?.touched"
+            class="invalid-feedback">
+            L'année de début est requise.
+        </div>
     </div>
     <div class="form-group">
-      <label for="separationYear">Separation Year:</label>
-      <input type="number" id="separationYear" class="form-control" formControlName="separationYear">
+        <label for="separationYear">Année de séparation:</label>
+        <input type="number" id="separationYear" class="form-control" formControlName="separationYear">
     </div>
     <div class="form-group">
-      <label for="founders">Founders:</label>
-      <input type="text" id="founders" class="form-control" formControlName="founders">
+        <label for="founders">Fondateurs :</label>
+        <input type="text" id="founders" class="form-control" formControlName="founders">
     </div>
     <div class="form-group">
-      <label for="totalMembers">Total Members:</label>
-      <input type="number" id="totalMembers" class="form-control" formControlName="totalMembers">
-      <div *ngIf="musicBandForm.get('totalMembers')?.errors?.['required'] && musicBandForm.get('totalMembers')?.touched" class="invalid-feedback">
-        Total Members is required.
-      </div>
+        <label for="totalMembers">Nombre de membres:</label>
+        <input type="number" id="totalMembers" class="form-control" formControlName="totalMembers">
+        <div *ngIf="musicBandForm.get('totalMembers')?.errors?.['required'] && musicBandForm.get('totalMembers')?.touched"
+            class="invalid-feedback">
+            Le nombre de membres est requis.
+        </div>
     </div>
     <div class="form-group">
-      <label for="style">Style:</label>
-      <input type="text" id="style" class="form-control" formControlName="style">
-      <div *ngIf="musicBandForm.get('style')?.errors?.['required'] && musicBandForm.get('style')?.touched" class="invalid-feedback">
-        Style is required.
-      </div>
+        <label for="style">Style musical:</label>
+        <input type="text" id="style" class="form-control" formControlName="style">
+        <div *ngIf="musicBandForm.get('style')?.errors?.['required'] && musicBandForm.get('style')?.touched"
+            class="invalid-feedback">
+            Le style musical est requis.
+        </div>
     </div>
     <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea id="description" class="form-control" formControlName="description"></textarea>
+        <label for="description">Description :</label>
+        <textarea id="description" class="form-control" formControlName="description"></textarea>
+        <div *ngIf="musicBandForm.get('description')?.errors?.['required'] && musicBandForm.get('description')?.touched"
+            class="invalid-feedback">
+            La desription musical est requise.
+        </div>
     </div>
-    
+
     <button type="submit" [disabled]="!musicBandForm.valid" class="btn btn-primary">Submit</button>
-  </form>  
+</form>

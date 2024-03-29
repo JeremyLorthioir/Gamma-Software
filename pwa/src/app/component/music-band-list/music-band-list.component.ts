@@ -18,4 +18,16 @@ export class MusicBandListComponent {
   ngOnInit(): void {
     this.MusicBandService.getMusicBands().subscribe((musicBands) => { this.musicBands = musicBands });
   }
+
+  deleteMusicBand(musicBand: MusicBand): void {
+    this.MusicBandService.deleteMusicBand(musicBand.id).subscribe({
+      next: () => {
+        this.ngOnInit();
+      }
+    });
+  }
+
+  updateMusicBand(musicBand: MusicBand): void {
+    // this.MusicBandService.deleteMusicBand(id);
+  }
 }

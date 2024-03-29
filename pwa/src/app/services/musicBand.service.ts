@@ -16,7 +16,6 @@ export class MusicBandService {
     }
 
     createMusicBand(musicBand: MusicBand): Observable<MusicBand[]> {
-        console.log(musicBand);
         const result = this.http.post<MusicBand[]>(`${this.apiUrl}/music_bands`, musicBand);
         result.subscribe({
             error: (err) => {
@@ -26,6 +25,10 @@ export class MusicBandService {
         });
 
         return result;
+    }
+
+    deleteMusicBand(musicBandId: number): any {
+        return this.http.delete(`${this.apiUrl}/music_bands/${musicBandId}`);
     }
 
     uploadMusicBands(file: File): void {
