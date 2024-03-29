@@ -15,6 +15,19 @@ export class MusicBandService {
         return this.http.get<MusicBand[]>(`${this.apiUrl}/music_bands`);
     }
 
+    createMusicBand(musicBand: MusicBand): Observable<MusicBand[]> {
+        console.log(musicBand);
+        const result = this.http.post<MusicBand[]>(`${this.apiUrl}/music_bands`, musicBand);
+        result.subscribe({
+            error: (err) => {
+                console.log(err);
+                alert("Une erreur est survenue");
+            }
+        });
+
+        return result;
+    }
+
     uploadMusicBands(file: File): void {
         const formData = new FormData();
         formData.append('import', file, file.name);
