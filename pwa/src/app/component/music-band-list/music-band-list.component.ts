@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MusicBand } from '../../interface/musicBand.interface';
 import { MusicBandService } from '../../services/musicBand.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-music-band-list',
@@ -13,7 +14,7 @@ export class MusicBandListComponent {
 
   musicBands: MusicBand[] = [];
 
-  constructor(private MusicBandService: MusicBandService) { }
+  constructor(private router: Router, private MusicBandService: MusicBandService) { }
 
   ngOnInit(): void {
     this.MusicBandService.getMusicBands().subscribe((musicBands) => { this.musicBands = musicBands });
@@ -28,6 +29,6 @@ export class MusicBandListComponent {
   }
 
   updateMusicBand(musicBand: MusicBand): void {
-    // this.MusicBandService.deleteMusicBand(id);
+    this.router.navigate([`/music-bands-edit/${musicBand.id}`])
   }
 }

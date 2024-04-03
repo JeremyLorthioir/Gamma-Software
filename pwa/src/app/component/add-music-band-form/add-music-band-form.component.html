@@ -50,10 +50,6 @@
     <div class="form-group">
         <label for="style">Style musical:</label>
         <input type="text" id="style" class="form-control" formControlName="style">
-        <div *ngIf="musicBandForm.get('style')?.errors?.['required'] && musicBandForm.get('style')?.touched"
-            class="invalid-feedback">
-            Le style musical est requis.
-        </div>
     </div>
     <div class="form-group">
         <label for="description">Description :</label>

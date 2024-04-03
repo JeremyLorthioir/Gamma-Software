@@ -15,16 +15,16 @@ export class MusicBandService {
         return this.http.get<MusicBand[]>(`${this.apiUrl}/music_bands`);
     }
 
-    createMusicBand(musicBand: MusicBand): Observable<MusicBand[]> {
-        const result = this.http.post<MusicBand[]>(`${this.apiUrl}/music_bands`, musicBand);
-        result.subscribe({
-            error: (err) => {
-                console.log(err);
-                alert("Une erreur est survenue");
-            }
-        });
+    getMusicBandById(id: Number): Observable<MusicBand> {
+        return this.http.get<MusicBand>(`${this.apiUrl}/music_bands/${id}`);
+    }
 
-        return result;
+    createMusicBand(musicBand: MusicBand): Observable<MusicBand[]> {
+        return this.http.post<MusicBand[]>(`${this.apiUrl}/music_bands`, musicBand);
+    }
+
+    updateMusicBand(id: Number, musicBand: MusicBand): Observable<MusicBand[]> {
+        return this.http.patch<MusicBand[]>(`${this.apiUrl}/music_bands/${id}`, musicBand);
     }
 
     deleteMusicBand(musicBandId: number): any {

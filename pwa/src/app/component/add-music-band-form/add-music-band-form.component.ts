@@ -3,17 +3,18 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { MusicBand } from '../../interface/musicBand.interface';
 import { CommonModule } from '@angular/common';
 import { MusicBandService } from '../../services/musicBand.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-music-band-form',
+  selector: 'app-add-music-band-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './music-band-form.component.html'
+  templateUrl: './add-music-band-form.component.html'
 })
-export class MusicBandFormComponent {
+export class AddMusicBandFormComponent {
   musicBandForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private musicBandService: MusicBandService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private musicBandService: MusicBandService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -28,14 +29,21 @@ export class MusicBandFormComponent {
       separationYear: [null],
       founders: ['', Validators.required],
       totalMembers: [null, [Validators.required, Validators.pattern('\\d+')]],
-      style: ['', Validators.required],
+      style: [''],
       description: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.musicBandForm.valid) {
-      this.musicBandService.createMusicBand(this.musicBandForm.value);
+      this.musicBandService.createMusicBand(this.musicBandForm.value).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: () => {
+          alert("Impossible de créer le groupe.");
+        }
+      });
     }
   }
 }
