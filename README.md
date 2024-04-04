@@ -28,3 +28,5 @@ cd pwa
 ng serve
 # Frontend is ow running on http://localhost:4200/
 ```
+
+Se connecter ensuite une fois sur l'endpoint [https://localhost/music_bands](https://localhost/music_bands) afin de valider le certificat.
